@@ -1,0 +1,48 @@
+/* global.css */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color:whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+   padding: 0.8rem 1.5rem;
+     font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.correct {
+    animation: pulse 0.5s ease-in-out;
+}
+
+.incorrect {
+    animation: shake 0.5s ease-in-out;
+} */
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}

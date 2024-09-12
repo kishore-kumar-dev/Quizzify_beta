@@ -1,0 +1,53 @@
+/* ScoreScreen.css */
+.score-screen {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+h2{
+    margin-bottom: 20px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+    /* margin-top: 20px; */
+}
+
+.restart-btn {
+    /* background-color: lightgreen; */
+    color: white;
+    margin-top: 8px;
+
+}
+
+.clear-scores-btn {
+    /* background-color: lightcoral; */
+    margin-top: 8px;
+    color: white;
+}
+
+
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    height: 65px;
+}
+
+.scoreboard-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
