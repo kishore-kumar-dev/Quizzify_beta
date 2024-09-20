@@ -25,12 +25,14 @@ const Navbar = () => {
               Create Quiz
             </button>
           )}
+          {role === 'user' && (
           <button
             onClick={() => navigate('/quiz-app')}
             className="px-4"
           >
-            Predefined Quiz
+            Category Quiz
           </button>
+          )}
           <button
             onClick={() => {
               localStorage.removeItem('role');

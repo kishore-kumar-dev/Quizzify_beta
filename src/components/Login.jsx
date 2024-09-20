@@ -9,8 +9,6 @@ const Login = () => {
   const handleLogin = (event) => {
     event.preventDefault();
     
-    // For demo purposes, assume the credentials define roles.
-    // You'd normally handle this with an actual backend API.
     if (username === 'admin' && password === 'admin123') {
       localStorage.setItem('role', 'admin');
       navigate('/admin-dashboard');
@@ -26,34 +24,38 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <form onSubmit={handleLogin} className="p-6 bg-white rounded shadow-md">
-        <h2 className="text-xl font-bold mb-4">Login</h2>
-        <div className="mb-4">
-          <label className="block text-gray-700">Username</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="border rounded p-2 w-full"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="border rounded p-2 w-full"
-            required
-          />
-        </div>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-          Login
-        </button>
-      </form>
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-gray-500 to-gray-900">
+  <form onSubmit={handleLogin} className="p-8 bg-white rounded-lg shadow-lg w-96">
+    <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Login</h2>
+    
+    <div className="mb-5">
+      <label className="block text-gray-600 font-semibold mb-2">Username</label>
+      <input
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+        required
+      />
     </div>
+    
+    <div className="mb-5">
+      <label className="block text-gray-600 font-semibold mb-2">Password</label>
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+        required
+      />
+    </div>
+    
+    <button type="submit" className="bg-gray-700 text-white w-full py-3 rounded-lg font-semibold hover:bg-gray-950 transition-colors duration-300">
+      Login
+    </button>
+  </form>
+</div>
+
   );
 };
 

@@ -18,12 +18,12 @@ const AdminDashboard = () => {
           >
             Create Quiz
           </button>
-          <button
+          {/* <button
             onClick={() => navigate('/quiz-app')}
             className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-950"
           >
             Predefined Quiz
-          </button>
+          </button> */}
         </div>
       </main>
       <Footer />

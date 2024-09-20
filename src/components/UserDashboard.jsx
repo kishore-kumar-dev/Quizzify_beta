@@ -16,7 +16,13 @@ const UserDashboard = () => {
             onClick={() => navigate('/quiz-app')}
             className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-800"
           >
-            Predefined Quiz
+            Category Quiz
+          </button>
+          <button
+            onClick={() => navigate('/quiz-app')}
+            className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-800"
+          >
+            Subject Quiz
           </button>
         </div>
       </main>

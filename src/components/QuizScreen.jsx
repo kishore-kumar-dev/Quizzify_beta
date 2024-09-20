@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/QuizScreen.css';
-import '../styles/global.css';
+// import '../styles/global.css';
 
 function QuizScreen({ questions, currentQuestionIndex, timeLeft, selectAnswer, selectedAnswer }) {
   const currentQuestion = questions[currentQuestionIndex];

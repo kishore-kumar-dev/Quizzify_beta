@@ -14,8 +14,9 @@ const CreateQuiz = () => {
     // Show the delete button if there's at least 1 question
     if (updatedQuestions.length >= 1) {
       setShowDeleteButton(true);
+      setShowDeleteButton(true);
     }
-  };
+  };  
 
   // Handle deleting a question
   const handleDeleteQuestion = (index) => {
@@ -25,6 +26,7 @@ const CreateQuiz = () => {
 
     // Hide the delete button if no questions remain
     if (updatedQuestions.length === 0) {
+      setShowDeleteButton(false);
       setShowDeleteButton(false);
     }
 
@@ -101,9 +103,11 @@ const CreateQuiz = () => {
         Delete Quiz
       </button>
       )}
+      {showDeleteButton && (
       <button onClick={handleSubmit} className="px-4 py-2 bg-gray-900 text-white rounded-lg ml-4">
         Submit Quiz
       </button>
+      )}
     </div>
     </main>
     <Footer />

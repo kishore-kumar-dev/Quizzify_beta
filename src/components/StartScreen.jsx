@@ -43,7 +43,7 @@ function StartScreen({ username, setUsername, category, setCategory, difficulty,
             <div key={index} className="scoreboard-item">
               <span className="scoreboard-rank">{index + 1}.</span>
               <span className="scoreboard-username">{score.name}</span>
-              <span className="scoreboard-score">{score.score}</span>
+              <span className="scoreboard-score scoreboard-score bg-slate-500 rounded-2xl w-6 h-6">{score.score}</span>
             </div>
           ))
         ) : (
