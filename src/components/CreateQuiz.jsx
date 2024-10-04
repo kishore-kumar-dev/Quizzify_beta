@@ -1,34 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar'; // Adjust the path as needed
 import Footer from './Footer'; // Adjust the path as needed
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const CreateQuiz = () => {
-  const [quizTitle, setQuizTitle] = useState('');
-  const [quizTopic, setQuizTopic] = useState('');
-  const [questions, setQuestions] = useState([]);
-  const [showDeleteButton, setShowDeleteButton] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { quizToEdit } = location.state || {}; // Get quiz data if editing
+
+  const [quizTitle, setQuizTitle] = useState(quizToEdit ? quizToEdit.title : '');
+  const [quizTopic, setQuizTopic] = useState(quizToEdit ? quizToEdit.topic : '');
+  const [questions, setQuestions] = useState(quizToEdit ? quizToEdit.questions : []);
+  const [showDeleteButton, setShowDeleteButton] = useState(quizToEdit ? true : false);
+
+  useEffect(() => {
+    if (quizToEdit) {
+      setQuizTitle(quizToEdit.title);
+      setQuizTopic(quizToEdit.topic);
+      setQuestions(quizToEdit.questions);
+    }
+  }, [quizToEdit]);
 
   const handleAddQuestion = () => {
     const newQuestion = { question: '', options: [], correctAnswer: '' };
     const updatedQuestions = [...questions, newQuestion];
     setQuestions(updatedQuestions);
-
-    // Show the delete button if there's at least 1 question
-    if (updatedQuestions.length >= 1) {
-      setShowDeleteButton(true);
-    }
+    setShowDeleteButton(true);
   };
 
   const handleDeleteQuestion = (index) => {
     const updatedQuestions = [...questions];
     updatedQuestions.splice(index, 1);
     setQuestions(updatedQuestions);
-
-    // Hide the delete button if no questions remain
     if (updatedQuestions.length === 0) {
       setShowDeleteButton(false);
     }
-
     alert('Question deleted!');
   };
 
@@ -57,15 +63,28 @@ const CreateQuiz = () => {
       questions: questions,
     };
 
-    // Save to localStorage (or you can use API or state management)
+    // Update local storage
     const existingQuizzes = JSON.parse(localStorage.getItem('userQuizzes')) || [];
-    localStorage.setItem('userQuizzes', JSON.stringify([...existingQuizzes, newQuiz]));
+    
+    if (quizToEdit) {
+      // Update existing quiz
+      const updatedQuizzes = existingQuizzes.map((quiz) =>
+        quiz.title === quizToEdit.title ? newQuiz : quiz
+      );
+      localStorage.setItem('userQuizzes', JSON.stringify(updatedQuizzes));
+      alert('Quiz updated!');
+    } else {
+      // Add new quiz
+      localStorage.setItem('userQuizzes', JSON.stringify([...existingQuizzes, newQuiz]));
+      alert('Quiz submitted!');
+    }
 
-    alert('Quiz submitted!');
+    // Reset form
     setQuizTitle('');
     setQuizTopic('');
     setQuestions([]);
     setShowDeleteButton(false);
+    navigate('/admin-dashboard'); // Redirect to admin dashboard
   };
 
   return (
@@ -73,7 +92,7 @@ const CreateQuiz = () => {
       <Navbar />
       <main className="flex-grow bg-gray-100 p-6">
         <div className="">
-          <h2 className="text-3xl font-bold mb-6">Create a New Quiz</h2>
+          <h2 className="text-3xl font-bold mb-6">{quizToEdit ? 'Edit Quiz' : 'Create a New Quiz'}</h2>
 
           <input
             type="text"
@@ -119,19 +138,20 @@ const CreateQuiz = () => {
                 onChange={(event) => handleCorrectAnswerChange(index, event)}
                 className="block w-full p-2 border border-gray-300 mb-2 rounded"
               />
+              <button
+                onClick={() => handleDeleteQuestion(index)}
+                className="mt-2 px-2 py-1 bg-red-600 text-white rounded hover:bg-red-800"
+              >
+                Delete Question
+              </button>
             </div>
           ))}
           <button onClick={handleAddQuestion} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg">
             Add Question
           </button>
           {showDeleteButton && (
-            <button onClick={handleDeleteQuestion} className="px-4 py-2 bg-gray-700 hover:bg-red-400 text-white rounded-lg ml-4">
-              Delete Quiz
-            </button>
-          )}
-          {showDeleteButton && (
             <button onClick={handleSubmit} className="px-4 py-2 bg-gray-900 text-white rounded-lg ml-4">
-              Submit Quiz
+              {quizToEdit ? 'Update Quiz' : 'Submit Quiz'}
             </button>
           )}
         </div>
@@ -142,3 +162,4 @@ const CreateQuiz = () => {
 };
 
 export default CreateQuiz;
+Floca
