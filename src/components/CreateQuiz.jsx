@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+// import Floca from './Floca'; // Adjust the path based on your project structure
+// import Floca from './Floca'; // Adjust the path based on your project structure
 import Navbar from './Navbar'; // Adjust the path as needed
 import Footer from './Footer'; // Adjust the path as needed
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -162,4 +164,3 @@ const CreateQuiz = () => {
 };
 
 export default CreateQuiz;
-Floca
